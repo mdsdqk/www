@@ -1,0 +1,50 @@
+---
+import BaseHead from '@/components/BaseHead.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { SITE } from '@/lib/site';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogType?: 'website' | 'article';
+  image?: ImageMetadata | string;
+}
+
+const {
+  title,
+  description = SITE.description,
+  ogType = 'website',
+  image,
+} = Astro.props;
+
+// SPEC §6 — title template
+const fullTitle = title
+  ? `${title} — ${SITE.brand}`
+  : `${SITE.brand} — ${SITE.tagline}`;
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <BaseHead
+      title={fullTitle}
+      description={description}
+      ogType={ogType}
+      image={image}
+    />
+  </head>
+  <body class="min-h-dvh">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4"
+      >Skip to content</a
+    >
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

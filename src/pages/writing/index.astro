@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FormattedDate from '@/components/FormattedDate.astro';
+import { getCollection } from 'astro:content';
+import { isVisible } from '@/lib/content';
+
+const posts = (
+  await getCollection('writing', ({ data }) => isVisible(data))
+).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const slugOf = (entry: { data: { slug?: string }; id: string }) =>
+  entry.data.slug ?? entry.id;
+---
+
+<BaseLayout title="Writing" description="Essays and notes on engineering, AI, and building products.">
+  <h1>Writing</h1>
+  {posts.length === 0 && <p>Nothing published yet.</p>}
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/writing/${slugOf(post)}`}>{post.data.title}</a>
+          {' — '}
+          <FormattedDate date={post.data.date} />
+          <p>{post.data.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

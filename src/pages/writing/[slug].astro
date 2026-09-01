@@ -1,0 +1,21 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import { isVisible } from '@/lib/content';
+import WritingPost from '@/layouts/WritingPost.astro';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('writing', ({ data }) => isVisible(data));
+  return posts.map((entry) => ({
+    params: { slug: entry.data.slug ?? entry.id },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<WritingPost entry={entry}>
+  <Content />
+</WritingPost>

@@ -1,0 +1,13 @@
+---
+import { SOCIALS } from '@/lib/site';
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <p>&copy; {year} Mohammed Sadiq K</p>
+  <nav>
+    <a href={SOCIALS.github}>GitHub</a>
+    {SOCIALS.linkedin && <a href={SOCIALS.linkedin}>LinkedIn</a>}
+    <a href={SOCIALS.rss}>RSS</a>
+  </nav>
+</footer>

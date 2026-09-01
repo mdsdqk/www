@@ -1,0 +1,116 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FormattedDate from '@/components/FormattedDate.astro';
+import { getCollection } from 'astro:content';
+import { isVisible } from '@/lib/content';
+import { SITE, SOCIALS } from '@/lib/site';
+
+// SPEC §8-9 — semantic Layer-0 skeleton. Real copy, minimal markup.
+// The visual world (hero treatment, motif, reveal) is the impeccable phase.
+
+const recentWriting = (
+  await getCollection('writing', ({ data }) => isVisible(data))
+)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const featuredProjects = (
+  await getCollection(
+    'projects',
+    ({ data }) => isVisible(data) && data.featured,
+  )
+)
+  .sort(
+    (a, b) =>
+      (a.data.order ?? 99) - (b.data.order ?? 99) ||
+      b.data.date.valueOf() - a.data.date.valueOf(),
+  )
+  .slice(0, 3);
+
+const slugOf = (entry: { data: { slug?: string }; id: string }) =>
+  entry.data.slug ?? entry.id;
+---
+
+<BaseLayout>
+  {/* Hero — SPEC §9, Name-led */}
+  <section aria-label="Intro">
+    <p>This is</p>
+    <h1>Sadiq.</h1>
+    <p>
+      I build software products end to end — the design, the engineering, and
+      the thousand details in between.
+    </p>
+    <p>
+      Leading Fullstack&nbsp;/&nbsp;Frontend at M2P Fintech. Building
+      {' '}
+      {
+        featuredProjects.map((p, i) => (
+          <>
+            {i > 0 && (i === featuredProjects.length - 1 ? ' & ' : ', ')}
+            <a href={`/projects/${slugOf(p)}`}>{p.data.title}</a>
+          </>
+        ))
+      }
+      {featuredProjects.length > 0 && ' on the side.'}
+    </p>
+  </section>
+
+  <section id="about" aria-label="About">
+    <h2>What I do</h2>
+    <p>
+      Senior SDE at M2P Fintech. I lead a team of five and set the frontend
+      direction across the org — roadmaps, modernisations, and reviews for 8+
+      teams and 100+ engineers. I care about the whole product: design, product
+      work, engineering, and the details.
+    </p>
+    <p>
+      <a href={SITE.url + '/cv.pdf'}>CV (PDF)</a>
+      {SOCIALS.linkedin && (
+        <>
+          {' · '}
+          <a href={SOCIALS.linkedin}>LinkedIn</a>
+        </>
+      )}
+    </p>
+  </section>
+
+  <section aria-label="Selected projects">
+    <h2>Selected projects</h2>
+    <ul>
+      {
+        featuredProjects.map((p) => (
+          <li>
+            <a href={`/projects/${slugOf(p)}`}>{p.data.title}</a> —{' '}
+            {p.data.description}
+          </li>
+        ))
+      }
+    </ul>
+    <p><a href="/projects">All projects</a></p>
+  </section>
+
+  <section aria-label="Recent writing">
+    <h2>Recent writing</h2>
+    <ul>
+      {
+        recentWriting.map((post) => (
+          <li>
+            <a href={`/writing/${slugOf(post)}`}>{post.data.title}</a>
+            {' — '}
+            <FormattedDate date={post.data.date} />
+          </li>
+        ))
+      }
+    </ul>
+    <p><a href="/writing">All writing</a></p>
+  </section>
+
+  <section aria-label="Links">
+    <h2>Elsewhere</h2>
+    <ul>
+      <li><a href={SOCIALS.github}>GitHub</a></li>
+      {SOCIALS.linkedin && <li><a href={SOCIALS.linkedin}>LinkedIn</a></li>}
+      <li><a href={SOCIALS.rss}>RSS</a></li>
+    </ul>
+  </section>
+</BaseLayout>

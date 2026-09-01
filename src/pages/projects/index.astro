@@ -1,0 +1,50 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { isVisible } from '@/lib/content';
+
+const projects = (
+  await getCollection('projects', ({ data }) => isVisible(data))
+).sort(
+  (a, b) =>
+    (a.data.order ?? 99) - (b.data.order ?? 99) ||
+    Number(b.data.featured) - Number(a.data.featured) ||
+    b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const slugOf = (entry: { data: { slug?: string }; id: string }) =>
+  entry.data.slug ?? entry.id;
+---
+
+<BaseLayout title="Projects" description="Things I've built and things in progress.">
+  <h1>Projects</h1>
+  {projects.length === 0 && <p>Nothing listed yet.</p>}
+  <ul>
+    {
+      projects.map((p) => (
+        <li>
+          <a href={`/projects/${slugOf(p)}`}>{p.data.title}</a>
+          {' — '}
+          {p.data.description}
+          <br />
+          <small>
+            {p.data.status}
+            {p.data.tech.length > 0 && ` · ${p.data.tech.join(', ')}`}
+            {p.data.links.repo && (
+              <>
+                {' · '}
+                <a href={p.data.links.repo}>repo</a>
+              </>
+            )}
+            {p.data.links.live && (
+              <>
+                {' · '}
+                <a href={p.data.links.live}>live</a>
+              </>
+            )}
+          </small>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

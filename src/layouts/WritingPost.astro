@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import FormattedDate from '@/components/FormattedDate.astro';
+
+interface Props {
+  entry: CollectionEntry<'writing'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, date, updated, cover } = entry.data;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogType="article"
+  image={cover}
+>
+  <article class="prose dark:prose-invert">
+    <header>
+      <h1>{title}</h1>
+      <p>
+        <FormattedDate date={date} />
+        {updated && (
+          <>
+            {' · updated '}
+            <FormattedDate date={updated} />
+          </>
+        )}
+      </p>
+    </header>
+    <slot />
+  </article>
+</BaseLayout>

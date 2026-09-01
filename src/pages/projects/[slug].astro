@@ -1,0 +1,37 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import { isVisible } from '@/lib/content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection('projects', ({ data }) => isVisible(data));
+  return projects.map((entry) => ({
+    params: { slug: entry.data.slug ?? entry.id },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { title, description, tech, role, links, status } = entry.data;
+// Body is optional (SPEC §5) — case study added later. render() is safe when empty.
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={title} description={description} image={entry.data.cover}>
+  <article class="prose dark:prose-invert">
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <dl>
+      <dt>Status</dt><dd>{status}</dd>
+      {role && (<><dt>Role</dt><dd>{role}</dd></>)}
+      {tech.length > 0 && (<><dt>Tech</dt><dd>{tech.join(', ')}</dd></>)}
+    </dl>
+    <p>
+      {links.repo && <a href={links.repo}>Repository</a>}
+      {links.live && <> · <a href={links.live}>Live</a></>}
+      {links.writeup && <> · <a href={links.writeup}>Write-up</a></>}
+    </p>
+    <Content />
+  </article>
+</BaseLayout>

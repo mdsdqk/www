@@ -1,0 +1,12 @@
+---
+import { NAV, SITE } from '@/lib/site';
+import HeaderLink from './HeaderLink.astro';
+---
+
+<header>
+  {/* SPEC §9 — `s3q` mark, becomes a logo later */}
+  <a href="/" aria-label={`${SITE.brand} — home`}>s3q</a>
+  <nav>
+    {NAV.map((item) => <HeaderLink href={item.href}>{item.label}</HeaderLink>)}
+  </nav>
+</header>

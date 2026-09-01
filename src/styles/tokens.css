@@ -1,0 +1,35 @@
+/* PLACEHOLDER token set — replaced in the impeccable cycle (SPEC §10).
+   Neutral system stack, minimal palette, light + dark. Do not build the
+   visual world here; this only exists so the scaffold renders. */
+
+:root {
+  --bg: #ffffff;
+  --fg: #17171a;
+  --muted: #5f5f66;
+  --line: #e6e6e9;
+  --accent: #17171a;
+}
+
+.dark {
+  --bg: #0a0a0b;
+  --fg: #f1f1ee;
+  --muted: #9a9a94;
+  --line: #242426;
+  --accent: #f1f1ee;
+}
+
+@theme {
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-mono:
+    ui-monospace, 'SF Mono', 'Cascadia Code', 'Roboto Mono', Menlo, monospace;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+}
