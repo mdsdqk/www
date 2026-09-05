@@ -123,7 +123,17 @@ import HomeLayout from '@/layouts/HomeLayout.astro';
         <ul class="work">
           <li class="work__item rv">
             <span class="work__n" aria-hidden="true">(01)</span>
-            <h3 class="work__title">Nook</h3>
+            <div class="work__main">
+              <h3 class="work__title">Nook</h3>
+              <div class="work__links">
+                <a
+                  href="https://nook-spiky.vercel.app"
+                  target="_blank"
+                  rel="noopener"
+                  >Live <span>nook-spiky.vercel.app</span></a
+                >
+              </div>
+            </div>
             <p class="work__desc">
               An AI-native personal finance OS, with MCP servers and tools
               built for AI agents.
@@ -131,20 +141,42 @@ import HomeLayout from '@/layouts/HomeLayout.astro';
           </li>
           <li class="work__item rv">
             <span class="work__n" aria-hidden="true">(02)</span>
+            <div class="work__main">
+              <h3 class="work__title">ryft</h3>
+              <div class="work__links">
+                <a
+                  href="https://ryft-db.vercel.app"
+                  target="_blank"
+                  rel="noopener"
+                  >Live <span>ryft-db.vercel.app</span></a
+                >
+                <a
+                  href="https://github.com/mdsdqk/ryft"
+                  target="_blank"
+                  rel="noopener"
+                  >Code <span>github.com/mdsdqk/ryft</span></a
+                >
+              </div>
+            </div>
+            <p class="work__desc">
+              Version control for database schemas &mdash; Think Git for databases.
+            </p>
+          </li>
+          <li class="work__item rv">
+            <span class="work__n" aria-hidden="true">(03)</span>
             <h3 class="work__title">rover</h3>
             <p class="work__desc">
               A multi-agent harness that
               takes product specs in and hands a production-ready PR out.
             </p>
           </li>
-          <li class="work__item rv">
-            <span class="work__n" aria-hidden="true">(03)</span>
-            <h3 class="work__title">ryft</h3>
-            <p class="work__desc">
-              Version control for database schemas &mdash; Think Git for databases.
-            </p>
-          </li>
         </ul>
+        <p class="work__more rv">
+          <a href="https://github.com/mdsdqk" target="_blank" rel="noopener">
+            Explore more projects
+            <span>github.com/mdsdqk</span>
+          </a>
+        </p>
       </div>
     </section>
 

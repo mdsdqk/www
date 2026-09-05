@@ -626,6 +626,63 @@ h1.name{
 }
 .work__item:hover .work__desc{ color:var(--bone-2); }
 
+.work__links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:clamp(14px, 2vw, 28px);
+  margin-top:14px;
+}
+.work__links a{
+  display:inline-flex;
+  align-items:baseline;
+  gap:9px;
+  text-decoration:none;
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding-bottom:4px;
+  border-bottom:1px solid rgba(234,231,225,.16);
+  transition:color 380ms var(--ease), border-color 380ms var(--ease);
+}
+.work__links a span{
+  letter-spacing:.08em;
+  text-transform:none;
+  color:var(--bone-3);
+  transition:color 380ms var(--ease);
+}
+.work__links a:hover{ color:var(--corona); border-bottom-color:var(--corona); }
+.work__links a:hover span{ color:var(--bone); }
+
+.work__more{
+  margin:0;
+  padding:clamp(28px, 3.8vw, 48px) clamp(14px, 1.6vw, 26px) 0;
+}
+.work__more a{
+  display:inline-flex;
+  align-items:baseline;
+  gap:9px;
+  text-decoration:none;
+  font-size:clamp(1.05rem, 1.5vw, 1.28rem);
+  font-weight:500;
+  letter-spacing:-.022em;
+  color:var(--bone);
+  padding-bottom:5px;
+  border-bottom:1px solid rgba(234,231,225,.16);
+  transition:color 380ms var(--ease), border-color 380ms var(--ease);
+}
+.work__more a span{
+  font-family:var(--mono);
+  font-size:10.5px;
+  font-weight:400;
+  letter-spacing:.12em;
+  color:var(--muted);
+  transition:color 380ms var(--ease);
+}
+.work__more a:hover{ color:var(--corona); border-bottom-color:var(--corona); }
+.work__more a:hover span{ color:var(--bone-3); }
+
 /* ── 03 · writing ─────────────────────────────────────────── */
 .writing{ border-top:1px solid var(--line); }
 .writing li{
