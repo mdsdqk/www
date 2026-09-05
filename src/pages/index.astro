@@ -1,116 +1,208 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import FormattedDate from '@/components/FormattedDate.astro';
-import { getCollection } from 'astro:content';
-import { isVisible } from '@/lib/content';
-import { SITE, SOCIALS } from '@/lib/site';
-
-// SPEC §8-9 — semantic Layer-0 skeleton. Real copy, minimal markup.
-// The visual world (hero treatment, motif, reveal) is the impeccable phase.
-
-const recentWriting = (
-  await getCollection('writing', ({ data }) => isVisible(data))
-)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
-
-const featuredProjects = (
-  await getCollection(
-    'projects',
-    ({ data }) => isVisible(data) && data.featured,
-  )
-)
-  .sort(
-    (a, b) =>
-      (a.data.order ?? 99) - (b.data.order ?? 99) ||
-      b.data.date.valueOf() - a.data.date.valueOf(),
-  )
-  .slice(0, 3);
-
-const slugOf = (entry: { data: { slug?: string }; id: string }) =>
-  entry.data.slug ?? entry.id;
+import HomeLayout from '@/layouts/HomeLayout.astro';
 ---
 
-<BaseLayout>
-  {/* Hero — SPEC §9, Name-led */}
-  <section aria-label="Intro">
-    <p>This is</p>
-    <h1>Sadiq.</h1>
-    <p>
-      I build software products end to end — the design, the engineering, and
-      the thousand details in between.
-    </p>
-    <p>
-      Leading Fullstack&nbsp;/&nbsp;Frontend at M2P Fintech. Building
-      {' '}
-      {
-        featuredProjects.map((p, i) => (
-          <>
-            {i > 0 && (i === featuredProjects.length - 1 ? ' & ' : ', ')}
-            <a href={`/projects/${slugOf(p)}`}>{p.data.title}</a>
-          </>
-        ))
-      }
-      {featuredProjects.length > 0 && ' on the side.'}
-    </p>
-  </section>
+<HomeLayout>
+  <div class="grain" aria-hidden="true"></div>
 
-  <section id="about" aria-label="About">
-    <h2>What I do</h2>
-    <p>
-      Senior SDE at M2P Fintech. I lead a team of five and set the frontend
-      direction across the org — roadmaps, modernisations, and reviews for 8+
-      teams and 100+ engineers. I care about the whole product: design, product
-      work, engineering, and the details.
-    </p>
-    <p>
-      <a href={SITE.url + '/cv.pdf'}>CV (PDF)</a>
-      {SOCIALS.linkedin && (
-        <>
-          {' · '}
-          <a href={SOCIALS.linkedin}>LinkedIn</a>
-        </>
-      )}
-    </p>
-  </section>
+  <div class="rules" aria-hidden="true">
+    <div class="rules__inner">
+      <div class="rules__v rules__v--l"></div>
+      <div class="rules__v rules__v--r"></div>
+      <div class="rules__tick rules__tick--tl"></div>
+      <div class="rules__tick rules__tick--tr"></div>
+      <div class="rules__tick rules__tick--bl"></div>
+      <div class="rules__tick rules__tick--br"></div>
+    </div>
+  </div>
 
-  <section aria-label="Selected projects">
-    <h2>Selected projects</h2>
-    <ul>
-      {
-        featuredProjects.map((p) => (
-          <li>
-            <a href={`/projects/${slugOf(p)}`}>{p.data.title}</a> —{' '}
-            {p.data.description}
+  <div class="edge edge--left" aria-hidden="true">Mohammed&nbsp;Sadiq&nbsp;K</div>
+  <div class="edge edge--bl" aria-hidden="true"><b>s3q.io</b></div>
+  <div class="edge edge--br" aria-hidden="true">
+    <span id="prog">000</span>&nbsp;/&nbsp;100
+  </div>
+
+  <nav class="nav" id="nav" aria-label="Primary">
+    <div class="wrap nav__in">
+      <a class="nav__mark" href="#top" aria-label="s3q — home">s3q</a>
+      <div class="nav__links">
+        <!-- <a href="#writing">Writing</a> -->
+        <!-- <i class="nav__dot" aria-hidden="true">&middot;</i> -->
+        <a href="#work">Projects</a>
+        <i class="nav__dot" aria-hidden="true">&middot;</i>
+        <a href="#about">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap hero__body">
+      <p class="prefix">This is</p>
+
+      <div class="namewrap">
+        <div class="sky" aria-hidden="true">
+          <div class="sky__layer sky__bloom"></div>
+          <div class="sky__layer sky__streamers"></div>
+          <div class="sky__layer sky__ring"></div>
+          <div class="sky__layer sky__circle sky__circle--b"></div>
+          <div class="sky__layer sky__circle sky__circle--a"></div>
+          <div class="sky__cross"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <h1 class="name">Sadiq.</h1>
+      </div>
+
+      <p class="positioning">
+        <span class="positioning__line">I build software products end to end</span>
+        <span class="positioning__line"
+          >the design, the engineering, and the thousand details in between.</span
+        >
+      </p>
+      <p class="meta">
+        Leading Fullstack Engineering at M2P Fintech. Building{' '}
+        <a href="#work">Nook</a> on the side.
+      </p>
+    </div>
+
+    <div class="hero__horizon" aria-hidden="true"></div>
+
+    <div class="wrap hero__foot">
+      <div class="hero__rule"></div>
+      <div class="hero__cue">
+        <span>s3q.io</span>
+        <span>Scroll</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" id="about" aria-labelledby="h-about">
+      <div class="wrap">
+        <div class="shead rv">
+          <span class="shead__n" aria-hidden="true">(01)</span>
+          <h2 id="h-about">What I do</h2>
+          <span class="shead__line"></span>
+        </div>
+
+        <div class="about">
+          <p class="about__lead rv">
+            <span class="about__mark">0 → 1</span>
+            <span class="about__kicker">across the whole craft.</span>
+          </p>
+          <p class="about__body rv">
+            The shape of the product, the interfaces people touch, the systems
+            underneath, and the bar it ships against &mdash; I stay responsible
+            for all of it.
+          </p>
+        </div>
+
+        <ul class="range">
+          <li class="rv">
+            <span class="range__n" aria-hidden="true">01</span>
+            <span class="range__t">Product</span>
           </li>
-        ))
-      }
-    </ul>
-    <p><a href="/projects">All projects</a></p>
-  </section>
-
-  <section aria-label="Recent writing">
-    <h2>Recent writing</h2>
-    <ul>
-      {
-        recentWriting.map((post) => (
-          <li>
-            <a href={`/writing/${slugOf(post)}`}>{post.data.title}</a>
-            {' — '}
-            <FormattedDate date={post.data.date} />
+          <li class="rv">
+            <span class="range__n" aria-hidden="true">02</span>
+            <span class="range__t">Design</span>
           </li>
-        ))
-      }
-    </ul>
-    <p><a href="/writing">All writing</a></p>
-  </section>
+          <li class="rv">
+            <span class="range__n" aria-hidden="true">03</span>
+            <span class="range__t">Engineering</span>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-  <section aria-label="Links">
-    <h2>Elsewhere</h2>
-    <ul>
-      <li><a href={SOCIALS.github}>GitHub</a></li>
-      {SOCIALS.linkedin && <li><a href={SOCIALS.linkedin}>LinkedIn</a></li>}
-      <li><a href={SOCIALS.rss}>RSS</a></li>
-    </ul>
-  </section>
-</BaseLayout>
+    <section class="section" id="work" aria-labelledby="h-work">
+      <div class="wrap">
+        <div class="shead rv">
+          <span class="shead__n" aria-hidden="true">(02)</span>
+          <h2 id="h-work">Selected work</h2>
+          <span class="shead__line"></span>
+        </div>
+
+        <ul class="work">
+          <li class="work__item rv">
+            <span class="work__n" aria-hidden="true">(01)</span>
+            <h3 class="work__title">Nook</h3>
+            <p class="work__desc">
+              An AI-native personal finance OS, with MCP servers and tools
+              built for AI agents.
+            </p>
+          </li>
+          <li class="work__item rv">
+            <span class="work__n" aria-hidden="true">(02)</span>
+            <h3 class="work__title">rover</h3>
+            <p class="work__desc">
+              A multi-agent harness that
+              takes product specs in and hands a production-ready PR out.
+            </p>
+          </li>
+          <li class="work__item rv">
+            <span class="work__n" aria-hidden="true">(03)</span>
+            <h3 class="work__title">ryft</h3>
+            <p class="work__desc">
+              Version control for database schemas &mdash; Think Git for databases.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- <section class="section" id="writing" aria-labelledby="h-writing">
+      <div class="wrap">
+        <div class="shead rv">
+          <span class="shead__n" aria-hidden="true">(03)</span>
+          <h2 id="h-writing">Writing</h2>
+          <span class="shead__line"></span>
+        </div>
+
+        <ul class="writing">
+          <li class="rv">
+            <span class="writing__n" aria-hidden="true">001</span>
+            <h3 class="writing__t">Angular signals, for React developers</h3>
+            <span class="writing__s">Forthcoming</span>
+          </li>
+          <li class="rv">
+            <span class="writing__n" aria-hidden="true">002</span>
+            <h3 class="writing__t">Giving your taste to the machine</h3>
+            <span class="writing__s">Forthcoming</span>
+          </li>
+          <li class="rv">
+            <span class="writing__n" aria-hidden="true">003</span>
+            <h3 class="writing__t">Version control for database schemas</h3>
+            <span class="writing__s">Forthcoming</span>
+          </li>
+        </ul>
+      </div>
+    </section> -->
+  </main>
+
+  <footer class="foot" aria-labelledby="h-foot">
+    <div class="foot__limb" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="shead rv">
+        <span class="shead__n" aria-hidden="true">(04)</span>
+        <h2 id="h-foot">Elsewhere</h2>
+        <span class="shead__line"></span>
+      </div>
+
+      <div class="foot__grid">
+        <div class="foot__links rv">
+          <a href="https://github.com/mdsdqk" rel="me noopener">
+            GitHub <span>mdsdqk</span>
+          </a>
+          <a href="https://www.linkedin.com/in/mdsdqk/" rel="me">LinkedIn <span>mdsdqk</span></a>
+          <a href="mailto:mdsdqk@gmail.com" rel="me">Email <span>mdsdqk@gmail.com</span></a>
+        </div>
+        <div class="foot__id rv">
+          &copy; 2026 Mohammed Sadiq K
+          <b>s3q.io</b>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    import '@/scripts/eclipse-home.ts';
+  </script>
+</HomeLayout>
