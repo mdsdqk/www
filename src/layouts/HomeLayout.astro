@@ -1,4 +1,5 @@
 ---
+import VercelAnalytics from '@/islands/VercelAnalytics';
 import { SITE, SOCIALS } from '@/lib/site';
 import '@/styles/eclipse.css';
 
@@ -77,5 +78,6 @@ const jsonLd = {
   <body>
     <a class="skip sr-only" href="#main">Skip to content</a>
     <slot />
+    <VercelAnalytics client:load />
   </body>
 </html>
