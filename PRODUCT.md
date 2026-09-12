@@ -10,7 +10,7 @@ web
 
 The site serves several visitors and is deliberately not tuned to one:
 
-- **Recruiters and hiring managers** arriving from a CV or LinkedIn link, skimming
+- **Recruiters and hiring managers** arriving from a resume or LinkedIn link, skimming
   to decide whether Sadiq is worth a conversation — they need scope, impact, and
   proof fast.
 - **Technical peers** arriving to judge the work itself — the engineering, the
@@ -78,8 +78,8 @@ depth in one lane; this one claims the full arc, backed by shipped work.
   production and feeds.
 - **Undecided:** typography, colour, and the full visual world (the sci-fi /
   digital direction is a target, not a resolved system); the `s3q` logo (a text
-  mark stands in for V0); a downloadable CV PDF and a default OG image are
-  required launch assets not yet produced.
+  mark stands in for V0). A resume PDF exists as a source file and is not yet in
+  the repo. Public language is **resume**, never CV.
 - **Terminology:** *beachhead* / *V0* (the minimal first live version); *the
   reveal* (the staged load); *easter egg* (an optional discoverable interactive
   experience — none in V0); *island* (a hydrated React component, the only place
@@ -116,13 +116,16 @@ depth in one lane; this one claims the full arc, backed by shipped work.
   database schemas" (case study from ryft); "Building s3q" (web-perf,
   post-launch). Stubs in `src/content/writing/`, all `draft: true` — **no writing
   is publish-ready yet.**
-- **Work-profile facts:** Senior SDE at M2P Fintech; leads a team of 5; frontend
-  authority across 8+ teams / 100+ engineers; drives design direction, frontend
-  and product roadmaps, modernisations, and cross-org code reviews.
+- **Work-profile facts:** Leading Fullstack / Frontend at M2P Fintech; leads a
+  team of 5; frontend authority across 8+ teams / 100+ engineers; drives design
+  direction, frontend and product roadmaps, modernisations, and cross-org code
+  reviews. "Senior SDE" is accurate internally and must not lead the site.
+- **Contact (real, on the site):** GitHub `https://github.com/mdsdqk`; LinkedIn
+  `https://www.linkedin.com/in/mdsdqk`; email `mdsdqk@gmail.com`.
 - **Absent — must not be fabricated:** finished article bodies; project
-  case-study write-ups; a CV PDF; a default OG image; any testimonials,
-  endorsements, client logos, metrics, or press. GitHub handle is `mdsdqk`; a
-  LinkedIn URL and a contact email are not yet supplied.
+  case-study write-ups; a resume PDF in `public/`; any testimonials,
+  endorsements, client logos, metrics, or press. Public language is **resume**,
+  never CV.
 - **Planning record:** `docs/SPEC.md` (16-section build spec), `CONTEXT.md`
   (glossary), `docs/adr/0001-stack-and-hosting.md`, wayfinder map under
   `.scratch/personal-website/`.
