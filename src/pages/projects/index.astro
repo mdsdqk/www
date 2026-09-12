@@ -16,7 +16,10 @@ const slugOf = (entry: { data: { slug?: string }; id: string }) =>
   entry.data.slug ?? entry.id;
 ---
 
-<BaseLayout title="Projects" description="Things I've built and things in progress.">
+<BaseLayout
+  title="Projects"
+  description="Products I've built — Nook, rover, ryft, and other work."
+>
   <h1>Projects</h1>
   {projects.length === 0 && <p>Nothing listed yet.</p>}
   <ul>

@@ -524,32 +524,39 @@ h1.name{
 .range{
   margin-top:clamp(52px, 7vw, 92px);
   display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
+  grid-template-columns:repeat(3, minmax(0,1fr));
   border-top:1px solid var(--line);
-}
-@media (min-width:760px){ .range{ grid-template-columns:repeat(4, minmax(0,1fr)); } }
-.range li{
-  padding:22px 0 0;
   border-bottom:1px solid var(--line);
-  padding-bottom:26px;
-  padding-right:18px;
 }
-@media (min-width:760px){ .range li{ border-bottom:0; } }
+@media (min-width:760px){
+  .range{ grid-template-columns:repeat(4, minmax(0,1fr)); }
+}
+.range li{
+  min-width:0;
+  padding:16px 8px 18px 0;
+}
+@media (min-width:760px){
+  .range li{ padding:22px 18px 26px 0; }
+}
 .range__n{
   display:block;
   font-family:var(--mono);
-  font-size:10px;
-  letter-spacing:.2em;
+  font-size:clamp(8px, 2.1vw, 10px);
+  letter-spacing:.16em;
   color:var(--muted);
-  margin-bottom:10px;
+  margin-bottom:8px;
   font-variant-numeric:tabular-nums;
+}
+@media (min-width:760px){
+  .range__n{ letter-spacing:.2em; margin-bottom:10px; }
 }
 .range__t{
   display:block;
-  font-size:clamp(1.05rem, 1.6vw, 1.32rem);
+  font-size:clamp(.78rem, 3.4vw, 1.32rem);
   font-weight:500;
-  letter-spacing:-.02em;
+  letter-spacing:-.03em;
   color:var(--bone);
+  white-space:nowrap;
 }
 
 /* ── 02 · selected work ───────────────────────────────────── */

@@ -49,7 +49,7 @@ src/
   styles/         global.css (Tailwind entry) + tokens.css (@theme values)
   lib/            framework-agnostic TS helpers
   assets/         images imported & processed by Astro
-public/           static passthrough (favicon, robots.txt, og-default.png, CV PDF)
+public/           static passthrough (favicon, robots.txt, og-default.png, resume PDF)
 ```
 
 - **All React in `src/islands/`.** A `client:*` directive anywhere else is a
@@ -181,11 +181,11 @@ const projects = defineCollection({
 - **`trailingSlash: 'never'`**, kebab-case slugs, no date segments.
 - `/writing` and `/projects` are locked nouns. Future sections = new top-level
   nouns; **existing routes never move**.
-- SEO: title template `<page> — <brand>` (brand + tagline from §9); meta
-  `description` from the entry field; self-canonical (+ `canonicalUrl`);
-  OG/Twitter `summary_large_image`; static `public/og-default.png` (1200×630) +
-  entry `cover` when present (generated OG deferred); `@astrojs/sitemap` (drafts
-  excluded); `robots.txt` → sitemap.
+- SEO: homepage title is **s3q · Sadiq's space** (not `Sadiq — s3q.io`); inner
+  pages use `<page> — <brand>`. Meta `description` from SITE or the entry field;
+  self-canonical; OG/Twitter `summary_large_image` with `og:site_name` `s3q.io`;
+  static `public/og-default.png` (1200×630) + entry `cover` when present;
+  `@astrojs/sitemap` (drafts excluded); `robots.txt` → sitemap.
 - **JSON-LD:** `Person` on `/`, `BlogPosting` on posts.
 - **RSS:** `@astrojs/rss` at `/rss.xml`, writing only, summary not full content,
   drafts excluded, `<link rel="alternate">` in `<head>`.

@@ -3,7 +3,13 @@ import BaseHead from '@/components/BaseHead.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import VercelAnalytics from '@/islands/VercelAnalytics';
-import { SITE } from '@/lib/site';
+import {
+  SITE,
+  jsonLdGraph,
+  personJsonLd,
+  websiteJsonLd,
+  type JsonLd,
+} from '@/lib/site';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
@@ -11,6 +17,10 @@ interface Props {
   description?: string;
   ogType?: 'website' | 'article';
   image?: ImageMetadata | string;
+  imageAlt?: string;
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  jsonLdExtra?: JsonLd[];
 }
 
 const {
@@ -18,12 +28,13 @@ const {
   description = SITE.description,
   ogType = 'website',
   image,
+  imageAlt,
+  publishedTime,
+  modifiedTime,
+  jsonLdExtra = [],
 } = Astro.props;
 
-// SPEC §6 — title template
-const fullTitle = title
-  ? `${title} — ${SITE.brand}`
-  : `${SITE.brand} — ${SITE.tagline}`;
+const fullTitle = title ? `${title} — ${SITE.brand}` : SITE.title;
 ---
 
 <!doctype html>
@@ -34,6 +45,10 @@ const fullTitle = title
       description={description}
       ogType={ogType}
       image={image}
+      imageAlt={imageAlt}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      jsonLd={jsonLdGraph([websiteJsonLd(), personJsonLd(), ...jsonLdExtra])}
     />
   </head>
   <body class="min-h-dvh">

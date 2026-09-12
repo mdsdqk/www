@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;900&family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        background: #060608;
+        overflow: hidden;
+      }
+      .card {
+        box-sizing: border-box;
+        width: 1200px;
+        height: 630px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #eae7e1;
+        background:
+          radial-gradient(
+            ellipse 58% 48% at 50% 42%,
+            rgba(255, 233, 201, 0.22) 0%,
+            transparent 62%
+          ),
+          radial-gradient(
+            ellipse 36% 34% at 50% 38%,
+            rgba(194, 210, 245, 0.12) 0%,
+            transparent 70%
+          ),
+          #060608;
+        font-family: 'Inter Tight', Helvetica, Arial, sans-serif;
+      }
+      .tick {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-color: rgba(234, 231, 225, 0.18);
+        border-style: solid;
+      }
+      .tick--tl {
+        top: 36px;
+        left: 36px;
+        border-width: 1px 0 0 1px;
+      }
+      .tick--tr {
+        top: 36px;
+        right: 36px;
+        border-width: 1px 1px 0 0;
+      }
+      .tick--bl {
+        bottom: 36px;
+        left: 36px;
+        border-width: 0 0 1px 1px;
+      }
+      .tick--br {
+        bottom: 36px;
+        right: 36px;
+        border-width: 0 1px 1px 0;
+      }
+      .prefix {
+        margin: 0 0 22px;
+        padding-left: 0.42em;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.42em;
+        text-transform: uppercase;
+        color: #94908a;
+      }
+      .name {
+        margin: 0;
+        font-weight: 900;
+        font-size: 168px;
+        line-height: 0.82;
+        letter-spacing: -0.055em;
+        color: #eae7e1;
+        text-shadow:
+          0 0 46px rgba(6, 6, 8, 0.96),
+          0 0 130px rgba(6, 6, 8, 0.92);
+      }
+      .line {
+        margin: 40px 0 0;
+        max-width: 18em;
+        font-weight: 300;
+        font-size: 22px;
+        line-height: 1.35;
+        letter-spacing: -0.008em;
+        color: #c8c4bd;
+      }
+      .mark {
+        position: absolute;
+        left: 56px;
+        bottom: 40px;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        color: #94908a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <i class="tick tick--tl"></i>
+      <i class="tick tick--tr"></i>
+      <i class="tick tick--bl"></i>
+      <i class="tick tick--br"></i>
+      <p class="prefix">This is</p>
+      <h1 class="name">Sadiq.</h1>
+      <p class="line">I build software products end to end</p>
+      <span class="mark">s3q.io</span>
+    </div>
+  </body>
+</html>
